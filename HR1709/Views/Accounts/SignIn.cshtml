@@ -1,0 +1,32 @@
+﻿@model SigninDTO
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "~/Views/Shared/_menu.cshtml";
+}
+
+<form method="post">
+    <div class="mb-3">
+        @ViewData["msg"]
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" asp-for="Username" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="Password" >
+    </div>
+
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" asp-for="RememberMe">
+        <label class="form-check-label">
+            Remember me
+        </label>
+    </div>
+
+    <div class="mb-3">
+
+        <input type="submit" class="btn btn-primary" value="Login" asp-action="Login">
+
+    </div>
+</form>

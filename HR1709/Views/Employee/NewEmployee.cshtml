@@ -1,0 +1,117 @@
+﻿@model vmEmployee
+@{
+    ViewData["Title"] = "NewEmployee";
+    Layout = "~/Views/Shared/_menu.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data" >
+
+    <input type="hidden" class="form-control" asp-for="EmployeeDTO.Id">
+
+<div class="mb-3">
+    <label class="form-label">First Name</label>
+    <input type="text" class="form-control" asp-for="EmployeeDTO.FirstName">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Last Name</label>
+    <input type="text" class="form-control" asp-for="EmployeeDTO.LastName">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Gender</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" asp-for="EmployeeDTO.Gender" value="Male">
+        <label class="form-check-label">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" asp-for="EmployeeDTO.Gender" value="female">
+        <label class="form-check-label">Female</label>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Department</label>
+    <select class="form-select" asp-items='new SelectList(Model.liDepartmentDTO,"Id","Name")' asp-for="EmployeeDTO.Department_Id">
+        
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Position</label>
+    <select class="form-select" asp-items='new SelectList(Model.liPositionDTO,"Id","Name")' asp-for="EmployeeDTO.Position_Id">
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Working Type</label>
+    <select class="form-select" asp-items='new SelectList(Model.liWorkingTypeDTO,"Id","Name")' asp-for="EmployeeDTO.Working_Type_Id">
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Nationality</label>
+    <select class="form-select" asp-items='new SelectList(Model.liNationalityDTO,"Id","Name")' asp-for="EmployeeDTO.Nationality_Id">
+    </select>
+</div>
+
+
+<div class="mb-3">
+    <label class="form-label">National Id</label>
+    <input type="text" class="form-control"  asp-for="EmployeeDTO.NationalId">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="text" class="form-control" asp-for="EmployeeDTO.Email">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Phone</label>
+    <input type="text" class="form-control" asp-for="EmployeeDTO.Phone">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Marital Status</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" asp-for="EmployeeDTO.MaritalStatus" value="Single">
+        <label class="form-check-label">Single</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" asp-for="EmployeeDTO.MaritalStatus" value="Married">
+        <label class="form-check-label">Married</label>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">DOB</label>
+    <input type="date" class="form-control" asp-for="EmployeeDTO.DOB">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Hiring Date</label>
+    <input type="date" class="form-control" asp-for="EmployeeDTO.HiringDate">
+</div>
+
+    <div class="mb-3">
+        <label class="btn btn-primary" for="fu1">Upload Image</label>
+        <input type="file" style="display:none" id="fu1" asp-for="EmployeeDTO.fuProfile" />
+    </div>
+    @if (Model.EmployeeDTO.ImageName != null)
+    {
+        <div class="mb-3">
+            <img src="~/@Model.EmployeeDTO.ImageName" style="width:100px" />
+        </div>
+        <input type="hidden" asp-for="EmployeeDTO.ImageName">
+    }
+
+<div class="mb-3">
+    @if((bool)ViewData["IsEdit"]==false){
+    <input type="submit" class="btn btn-primary" value="Save" asp-action="SaveData">
+    }
+    else
+    {
+        <input type="submit" class="btn btn-primary" value="Update" asp-action="UpdateDate">
+    }
+</div>
+</form>

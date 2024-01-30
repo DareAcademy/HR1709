@@ -1,0 +1,63 @@
+﻿@model List<EmployeeDTO>
+
+@{
+    ViewData["Title"] = "EmployeeList";
+    Layout = "~/Views/Shared/_menu.cshtml";
+}
+<form method="post">
+<div class="mb-3">
+    <label class="form-label">First Name</label>
+    <input type="text" class="form-control" name="txtfirstName">
+    <input type="submit" value="Search" asp-action="Search" />
+</div>
+<div class="mb-3">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>Department</th>
+                <th>Position</th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (EmployeeDTO item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/@item.ImageName" style="width:50px">
+                    </td>
+                    <td>
+                        @item.FirstName @item.LastName
+                    </td>
+                    <td>
+                        @item.Phone
+                    </td>
+                    <td>
+                        @item.department.Name
+                    </td>
+                        <td>
+                            @item.position.Name
+                        </td>
+                        <td>
+                            <input type="submit" value="Delete" asp-action="Delete" class="btn btn-danger" asp-route-Id=@item.Id>
+                            <input type="submit" value="Edit" asp-action="Edit" class="btn btn-primary" asp-route-Id=@item.Id>
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</form>
+
+

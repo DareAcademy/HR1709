@@ -1,0 +1,22 @@
+﻿@model RoleDTO
+
+@{
+    ViewData["Title"] = "NewRole";
+    Layout = "~/Views/Shared/_menu.cshtml";
+}
+
+<form method="post">
+    <div class="mb-3">
+        @ViewData["Result"]
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="Name">
+    </div>
+
+    <div class="mb-3">
+
+        <input type="submit" class="btn btn-primary" value="Save" asp-action="CreateRole">
+
+    </div>
+</form>

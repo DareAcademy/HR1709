@@ -1,0 +1,37 @@
+﻿@model List<NationalityDTO>
+
+@{
+    ViewData["Title"] = "NationalityList";
+    Layout = "~/Views/Shared/_menu.cshtml";
+}
+
+<form method="post">
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (NationalityDTO item in Model)
+        {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                    <input type="submit" value="Delete" class="btn btn-primary" asp-action="Delete" asp-route-Id="@item.Id">
+                        <input type="submit" value="Edit" class="btn btn-primary" asp-action="Edit" asp-route-Id="@item.Id">
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+</form>
